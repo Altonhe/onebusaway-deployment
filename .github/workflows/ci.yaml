@@ -24,7 +24,7 @@ jobs:
 
     # Initialize a new or existing Opentofu working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Opentofu Init
-      run: tofu init -backend=false
+      run: tofu init
 
     # Validate opentofu files
     - name: Opentofu Validate
@@ -36,12 +36,12 @@ jobs:
     
     # Perform a security scan of the opentofu code using CodeQL
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: 'javascript'
+      uses: github/codeql-action/init@v3
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
+      with:
+        output: results.sarif
 
     # Upload results to GitHub Advanced Security
     - name: Upload SARIF file

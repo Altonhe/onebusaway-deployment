@@ -1,4 +1,4 @@
-name: 'Opentofu Lint and Tests'
+name: 'CI'
 
 on:
   push:
@@ -24,15 +24,15 @@ jobs:
 
     # Initialize a new or existing Opentofu working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Opentofu Init
-      run: opentofu init -backend=false
+      run: tofu init -backend=false
 
     # Validate opentofu files
     - name: Opentofu Validate
-      run: opentofu validate -no-color
+      run: tofu validate -no-color
 
     # Checks that all Opentofu configuration files adhere to a canonical format
     - name: Opentofu Format
-      run: opentofu fmt -check -recursive
+      run: tofu fmt -check -recursive
     
     # Perform a security scan of the opentofu code using checkov
     - name: Run Checkov action
